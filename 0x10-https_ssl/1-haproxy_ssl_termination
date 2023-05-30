@@ -38,14 +38,14 @@ frontend tjibbs-frontend
         mode http
         http-request redirect scheme https code 301 unless { ssl_fc }
         http-request set-header X_Forwarded-Proto http
-        default_backend tjibbs-backend
+        default_backend darmaco-backend
 
-frontend tjibbs-frontend-https
-        bind *:443 ssl crt /etc/haproxy/certs/tjibbs.tech.pem
+frontend darmaco-frontend-https
+        bind *:443 ssl crt /etc/haproxy/certs/darmaco.tech.pem
         http-request set-header X-Forwarded-Proto https
-        default_backend tjibbs-backend
+        default_backend darmaco-backend
 
-backend tjibbs-backend
+backend darmaco-backend
         balance roundrobin
-        server 145920-web-01 54.237.224.189:80 check
-        server 145920-web-02 100.25.33.239 :80 check
+        server 184268-web-01 54.90.22.17:80 check
+        server 184268-web-02 52.204.101.54:80 check
